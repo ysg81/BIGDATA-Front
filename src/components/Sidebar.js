@@ -1,46 +1,26 @@
-import React from "react";
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Drawer from '@material-ui/core/Drawer';
-import MenuItem from '@material-ui/core/MenuItem';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import React, {Component} from 'react';
+import "./Sidebar.css";
 
-
-const styles = {
-    root: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginRight: 'auto'
-    },
-};
-    
-class Sidebar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            toggle: false
-        };
-    }
-    handleDrawerToggle = () => this.setState({toggle: !this.state.toggle})
+class Sidebar extends Component  {
     render() {
-        const { classes } = this.props;
         return (
-            <div className={classes.root}>
-                <AppBar position="static">
-                    <IconButton className={classes.menuButton} color="inherit" onClick={this.handleDrawerToggle}>
-                        <MenuIcon/>
-                    </IconButton>
-                </AppBar>
-                <Drawer open={this.state.toggle}>
-                    <MenuItem onClick={this.handleDrawerToggle}>Home</MenuItem>
-                </Drawer>
-            </div>
+            <sidebar className="sidebar">
+                <span className="sidebar_title">Movie Raing</span>
+                <div className="sidebar-i">
+                <a className="sidebar-s" href="#intro">
+                    메뉴1
+                </a>
+                <a className="sidebar-s" href="#cc">
+                    메뉴2
+                </a>
+                <a className="sidebar-s" href="#wagle">
+                    메뉴3
+                </a>
+                </div>
+            </sidebar>
+
         );
     }
 }
 
-
-
-export default withStyles(styles)(Sidebar);
+export default Sidebar;

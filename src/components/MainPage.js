@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import MovieContents from './movie/MovieContents';
-import MovieMenu from './movie/MovieMenu';
+// import MovieMenu from './movie/MovieMenu';
 
 import "./MainPage.css"
 
@@ -8,7 +8,7 @@ class MainPage extends Component {
     render(){
         return(
             <div className="main-page-template">
-                <MovieMenu/>
+                {/* <MovieMenu/> */}
                 <div className="main-page-main">
                     <MovieContents/>
                 </div>

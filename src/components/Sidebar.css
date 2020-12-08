@@ -1,0 +1,28 @@
+.sidebar {
+    width: 100vw;
+    height: 50px;
+    position: fixed;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+.sidebar_title {
+margin-left: 10px;
+color: white;
+font-family: "Jalnan";
+}
+
+.sidebar-i {
+width: 300px;
+display: flex;
+
+justify-content: space-evenly;
+}
+
+.sidebar-s {
+color: white;
+font-family: "Jalnan";
+text-decoration: none;
+}
