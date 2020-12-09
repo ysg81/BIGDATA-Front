@@ -1,0 +1,8 @@
+.information{
+    width: 100vw;
+    height: 60vh;
+    position: fixed;
+    margin: auto;
+    display: flex;
+    background-color: black;
+}
