@@ -4,7 +4,7 @@ import "./Sidebar.css";
 class Sidebar extends Component  {
     render() {
         return (
-            <sidebar className="sidebar">
+            <div className="sidebar">
                 <span className="sidebar_title">Movie Raing</span>
                 <div className="sidebar-i">
                 <a className="sidebar-s" href="#intro">
@@ -17,7 +17,7 @@ class Sidebar extends Component  {
                     메뉴3
                 </a>
                 </div>
-            </sidebar>
+            </div>
 
         );
     }
