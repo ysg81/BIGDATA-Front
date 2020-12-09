@@ -1,23 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
+import createSagaMiddleware from 'redux-saga';
+import {Provider} from 'react-redux';
+import {applyMiddleware} from 'redux';
+
+import {getStore} from './utils/storeUtils';
+import rootReducer from './appReducer';
+import rootSaga from './appSaga';
 import MainPage from './components/MainPage';
-import Sidebar from "./components/Sidebar";
+import Footer from './Footer';
 
-const imagestyle = {
-  width: "100%",
-  height: "100%",  
-  overflow : "auto",
-  };
+const sagaMiddleware = createSagaMiddleware();
+const store = getStore(rootReducer, applyMiddleware(sagaMiddleware));
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Sidebar />
-        <img src="/img/movie.png" style={imagestyle} />
-        <MainPage />
-      </div>
-    );
-  }  
-}
+if (process.env.NODE_ENV !== 'production' && typeof window !== 'undefined') window.store = store;
+
+sagaMiddleware.run(rootSaga);
+
+const App = props => {
+
+  return (
+    <Provider store={store}>
+      <MainPage />
+      <Footer />
+    </Provider>
+  );
+};
 
 export default App;
