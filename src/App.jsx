@@ -20,6 +20,27 @@ const App = props => {
 
   return (
     <Provider store={store}>
+      <style jsx global>{`
+        html,
+        body {
+          padding: 0;
+          margin: 0;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+            sans-serif;
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus,
+        button:focus {
+            outline: none;
+        }
+
+        * {
+          box-sizing: border-box;
+        }
+      `}</style>
       <MainPage />
       <Footer />
     </Provider>

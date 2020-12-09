@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import "./MainPage.css"
 import MovieChart from '../MovieChart';
@@ -13,10 +13,18 @@ const MainPage = props => {
     dispatch(getMoviePointExpect({data:'some-movie-info'}))
   },[])
 
+  const onKeyDown = e => {
+    if(e.key === 'Enter'){
+      const title = e.target.value
+      dispatch(getMoviePointExpect({title}))
+    }
+  }
+
   return (<>
     <div className="container">
       <div className="title" />
       <MovieChart className="chart" />
+      <input className='movie-input' onKeyDown={onKeyDown}/>
     </div>
     <style jsx>{`
       .container{
@@ -26,9 +34,12 @@ const MainPage = props => {
         margin: 0 auto;
         padding: 5rem;
         overflow:hidden;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
       }
       .title{
-        width:auto;
+        width:100%;
         height: 20rem;
 
         border-radius: 20px;
@@ -40,6 +51,21 @@ const MainPage = props => {
       }
       .chart{
         margin-top: 2rem;
+        width:100%;
+      }
+      .movie-input {
+        width: 80vw;
+        height: 45px;
+        max-width: 40rem;
+        margin-top: 5rem;
+        padding: 0 0.6rem;
+        font-size: 1.5rem;
+
+        background: #FFFFFF;
+        -webkit-appearance: none;
+        box-shadow: 0px 40px 30px rgba(0, 0, 0, 0.03), 0px 25px 20px rgba(0, 0, 0, 0.05), 0px 10px 15px rgba(0, 0, 0, 0.1), 0px 1px 5px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        border: none;
       }
     `}</style>
   </>)
