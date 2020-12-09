@@ -9,8 +9,8 @@ export const getChartCommonOption = () => ({
     spacingBottom: 1.5,
     spacingLeft: 1.5,
     spacingRight: 1.5,
-    marginRight: 100,
-    marginLeft: 100,
+    marginRight: 30,
+    marginLeft: 50,
     numberFormatter: formatNumber,
   },
   xAxis: [{

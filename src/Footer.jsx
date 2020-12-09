@@ -16,6 +16,11 @@ const Footer = props => {
         align-items: center;
         color: #666;
       }
+      @media (max-width:  600px) {
+        .footer {
+          height: 3.5rem;
+        }
+      }
     `}</style>
   </>)
 }

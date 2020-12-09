@@ -28,7 +28,7 @@ const MainPage = props => {
     </div>
     <style jsx>{`
       .container{
-        height: 100%;  
+        height: 100vh;  
         width: auto;  
         max-width: 60rem;
         margin: 0 auto;
@@ -38,6 +38,13 @@ const MainPage = props => {
         flex-direction: column;
         align-items: center;
       }
+      @media (max-width:  600px) {
+        .container {
+          padding: unset;
+          margin: unset;
+        }
+      }
+
       .title{
         width:100%;
         height: 20rem;
@@ -49,10 +56,23 @@ const MainPage = props => {
         background-size: cover;
         background-position: center;
       }
+      @media (max-width:  600px) {
+        .title {
+          border-radius: unset;
+        }
+      }
+
+
       .chart{
         margin-top: 2rem;
         width:100%;
       }
+      @media (max-width:  600px) {
+        .chart {
+          margin-top: 1.5rem;
+        }
+      }
+
       .movie-input {
         width: 80vw;
         height: 45px;
@@ -66,6 +86,11 @@ const MainPage = props => {
         box-shadow: 0px 40px 30px rgba(0, 0, 0, 0.03), 0px 25px 20px rgba(0, 0, 0, 0.05), 0px 10px 15px rgba(0, 0, 0, 0.1), 0px 1px 5px rgba(0, 0, 0, 0.2);
         border-radius: 10px;
         border: none;
+      }
+      @media (max-width:  600px) {
+        .movie-input {
+          margin-top: 2rem;
+        }
       }
     `}</style>
   </>)
