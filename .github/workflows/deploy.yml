@@ -3,7 +3,7 @@ name: deploy-sandbox
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   SSH:
     runs-on: ubuntu-latest
