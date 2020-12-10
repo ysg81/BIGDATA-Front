@@ -28,11 +28,13 @@ const MainPage = props => {
     </div>
     <style jsx>{`
       .container{
-        height: 100vh;  
+        
+        height: 100%;  
         width: auto;  
         max-width: 60rem;
         margin: 0 auto;
-        padding: 5rem;
+        padding: 2rem;
+        
         overflow:hidden;
         display:flex;
         flex-direction: column;
@@ -49,8 +51,6 @@ const MainPage = props => {
         width:100%;
         height: 20rem;
 
-        border-radius: 20px;
-        opacity:0.7;
         background-image: url(/img/movie.png);
         background-repeat: no-repeat;
         background-size: cover;
@@ -61,8 +61,6 @@ const MainPage = props => {
           border-radius: unset;
         }
       }
-
-
       .chart{
         margin-top: 2rem;
         width:100%;
