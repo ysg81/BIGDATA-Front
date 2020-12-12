@@ -1,8 +1,11 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import uniqBy from "ramda/src/uniqBy";
+
 import { moviePointExpectSelector } from "./appReducer";
-import Chart from "./components/Chart";
-import { FulfilledCase, MatchDataWrap } from "./utils/dataWrap";
+import { matchDataWrap } from "./utils/dataWrap";
 import { formatNumber } from "./utils/numberUtils";
+import Chart from "./components/Chart";
 
 const getOption = () => ({
   title: {
@@ -35,29 +38,31 @@ const getOption = () => ({
   },
 });
 
-const getSeriesOption = data => {
+const getSeriesOption = list => {
+  const data = list.map(movie => [movie.title,parseFloat(movie.score)] )
   const series = {
-    type:'column',
-    data:[['AAA',1],['BBB',5],['CCC',3]]
+    type: 'column',
+    data: data
   };
   return {series};
 };
 
 const MovieChart = props => {
+  const [list, setList] = useState([])
   const dataWrap = useSelector(moviePointExpectSelector);
-  console.log(dataWrap)
+
+  useEffect(()=>{
+    matchDataWrap({
+      fulfilled: data => setList(uniqBy(v=>v.id,[...list,data].filter(v=>v.id !== -1)))
+    })(dataWrap)
+  },[dataWrap])
+
   return (
-    <MatchDataWrap on={dataWrap} cached>
-      <FulfilledCase>
-        {data => (
-          <Chart 
-            {...props}
-            option={getSeriesOption(data)}
-            defaultOption={getOption()}
-          />
-        )}
-      </FulfilledCase>
-    </MatchDataWrap>
+    <Chart 
+      {...props}
+      option={getSeriesOption(list)}
+      defaultOption={getOption()}
+    />
   );
 };
 

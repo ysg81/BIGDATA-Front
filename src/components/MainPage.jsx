@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import "./MainPage.css"
 import MovieChart from '../MovieChart';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getMoviePointExpect } from '../appAction';
+import { matchDataWrap } from '../utils/dataWrap';
+import { moviePointExpectSelector } from '../appReducer';
 
 const MainPage = props => {
   const dispatch = useDispatch()
 
-  // 차트 테스트용 데이터 더미 데이터 호출
-  useEffect(()=>{
-    dispatch(getMoviePointExpect({data:'some-movie-info'}))
-  },[])
+  const dataWrap = useSelector(moviePointExpectSelector);
+
+  const isLoading = matchDataWrap({pending: () => true})(dataWrap) || false
 
   const onKeyDown = e => {
     if(e.key === 'Enter'){
@@ -24,12 +25,14 @@ const MainPage = props => {
     <div className="container">
       <div className="title" />
       <MovieChart className="chart" />
-      <input className='movie-input' onKeyDown={onKeyDown}/>
+      <div className="input-wrapper">
+        <input className='movie-input' onKeyDown={onKeyDown}/>
+        <div className={`loading ${isLoading ? 'on' : ''}`} />
+      </div>
     </div>
     <style jsx>{`
       .container{
-        
-        height: 100%;  
+        height: 100vh;  
         width: auto;  
         max-width: 60rem;
         margin: 0 auto;
@@ -71,11 +74,17 @@ const MainPage = props => {
         }
       }
 
+      .input-wrapper{
+        position: relative;
+        margin-top: 5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
       .movie-input {
         width: 80vw;
         height: 45px;
         max-width: 40rem;
-        margin-top: 5rem;
         padding: 0 0.6rem;
         font-size: 1.5rem;
 
@@ -86,10 +95,33 @@ const MainPage = props => {
         border: none;
       }
       @media (max-width:  600px) {
-        .movie-input {
+        .input-wrapper {
           margin-top: 2rem;
         }
       }
+      .loading{
+        position: absolute;
+        right: 6px;
+        width: 25px;
+        height: 25px;
+        margin: 0.5rem;
+      }
+      .loading.on {
+        border-radius: 100%;
+        border: 3px solid rgb(57, 72, 171);
+        border-color: rgb(57, 72, 171) transparent rgb(57, 72, 171) transparent;
+        animation: loading 1.5s linear infinite;
+      }
+      @keyframes loading {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      
+      
     `}</style>
   </>)
 }
