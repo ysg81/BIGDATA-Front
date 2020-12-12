@@ -7,7 +7,7 @@ function* getMoviePointExpect (action) {
   const {moiveInfo:params} = action.payload;
 
   try {
-    const r = yield call(apiGet, '/get', params);
+    const r = yield call(apiGet, '/movieinfo.php', params);
 
     yield put({
       type: GET_MOVIE_POINT_EXPECT.SUCCESS,
